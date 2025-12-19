@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Quick Movie Info",
+  "description": "Search movies and get IMDb ratings adn other details",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon/logo16.png",
+      "48": "icon/logo48.png",
+      "128": "icon/logo128.png"
+    }
+  },
+  "icons": {
+    "16": "icon/logo16.png",
+    "48": "icon/logo48.png",
+    "128": "icon/logo128.png"
+  }
+}
