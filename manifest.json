@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Quick Movie Info",
-  "description": "Search movies and get IMDb ratings adn other details",
+  "description": "Search movies and get IMDb ratings and other details",
   "version": "1.0",
   "action": {
     "default_popup": "popup.html",

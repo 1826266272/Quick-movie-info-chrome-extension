@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><img src="icon/logo48.png" class="logo" />Quick Info</title>
+  <title>Quick Info</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
@@ -11,8 +11,10 @@
         <h1 class="title">Quick Movie Info</h1>
     </div>
     <input type="text" id="movieInput" placeholder="Enter movie name" />
+    <div class="autocomplete">
+      <ul id="suggestions"></ul>
+    </div>
     <button id="searchBtn">Search</button>
-
     <div id="result"></div>
   </div>
 
