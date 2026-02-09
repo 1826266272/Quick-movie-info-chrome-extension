@@ -49,10 +49,10 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-
+/*
 button:hover {
   background-color: #FFD700;
-}
+}*/
 
 #result {
   margin-top: 10px;

@@ -48,13 +48,13 @@ async function searchMovie() {
 
       <div><span class="label">Genre:</span> ${data.Genre}</div>
       <div><span class="label">Runtime:</span> ${data.Runtime}</div>
+      <div><span class="label">Awards:</span> ${data.Awards}</div>
       <div><span class="label">Director:</span> ${data.Director}</div>
       <div><span class="label">Actors:</span> ${data.Actors}</div>
       <div><span class="label">Plot:</span> ${data.Plot}</div>
       <a href="https://www.imdb.com/title/${data.imdbID}" target="_blank" class="imdb-link">
         view more
       </a>
-
       <img class="movie-poster" src="${data.Poster}" alt="Poster"/>
     `;
   } catch (err) {
@@ -94,7 +94,7 @@ movieInput.addEventListener("input", () => {
 
   debounceTimer = setTimeout(() => {
     fetchSuggestions(query);
-  }, 300);
+  }, 100);
 });
 
 // Fetch suggestions from OMDb
@@ -110,7 +110,7 @@ async function fetchSuggestions(query) {
       return;
     }
 
-    suggestions.innerHTML = data.Search.slice(0, 6)
+    suggestions.innerHTML = data.Search
       .map(
         movie => `
         <li data-title="${movie.Title}">
