@@ -24,8 +24,7 @@ This extension helps users quickly access movie information without opening mult
 * JavaScript
 * HTML
 * CSS
-* Chrome Extension API
-* Movie API (OMDb or similar)
+* Movie API (OMDb)
 
 ---
 
