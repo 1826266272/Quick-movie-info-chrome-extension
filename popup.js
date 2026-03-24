@@ -2,9 +2,12 @@ const searchBtn = document.getElementById("searchBtn");
 const movieInput = document.getElementById("movieInput");
 const resultDiv = document.getElementById("result");
 const header = document.getElementById("header");
+const watchLater = document.getElementById("watchLaterLink");
 
 
 const API_KEY = "51894299";
+const SUPABASE_URL = "https://fbzjvswlfgmehuxnhsgj.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiemp2c3dsZmdtZWh1eG5oc2dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzMzUyODAsImV4cCI6MjA4OTkxMTI4MH0.d3IFfapNTI2S5O3IccJ2_lD-SwNWdMJN9mgDaUS2goI";
 
 async function searchMovie() {
   suggestions.innerHTML = "";
@@ -36,9 +39,14 @@ async function searchMovie() {
     } else if (ratingValue >= 5) {
       ratingClass = "yellow";
     }
+    console.log(data);
 
     resultDiv.innerHTML = `
-      <div class="movie-title">${data.Title} (${data.Year})</div>
+      <div class="movie-title">
+        ${data.Title} (${data.Year})
+        <button id="watchLaterBtn">Watch Later</button>
+      </div>
+      
 
       <div class="rating-label">IMDb Rating
         <div class="rating ${ratingClass}">
@@ -57,10 +65,25 @@ async function searchMovie() {
       </a>
       <img class="movie-poster" src="${data.Poster}" alt="Poster"/>
     `;
+    document
+      .getElementById("watchLaterBtn")
+      .addEventListener("click", () => {
+  
+        const movie = {
+          title: data.Title,
+          year: data.Year,
+          poster: data.Poster,
+          imdb_id: data.imdbID,
+          rating: data.imdbRating
+        };
+  
+        saveMovieToSupabase(movie);
+    });
   } catch (err) {
     resultDiv.innerHTML = "<p>Error fetching movie data</p>";
   }
   header.style.display = "none";
+  watchLater.style.display = "none";
 }
 
 // Click search button
@@ -86,11 +109,6 @@ suggestions.innerHTML = "";
 movieInput.addEventListener("input", () => {
   clearTimeout(debounceTimer);
   const query = movieInput.value.trim();
-
-  if (query.length < 2) {
-    suggestions.innerHTML = "";
-    return;
-  }
 
   debounceTimer = setTimeout(() => {
     fetchSuggestions(query);
@@ -142,3 +160,30 @@ document.addEventListener("click", (e) => {
     suggestions.innerHTML = "";
   }
 });
+
+
+//supabse funtcions
+
+//save movie to supabase
+
+async function saveMovieToSupabase(movie) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/movies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(movie)
+    });
+
+    watchLaterBtn.innerText = "Saved !";
+    watchLaterBtn.style = "background-color: #4DD0E1";
+    watchLaterBtn.disabled = true;
+  } catch (err) {
+    console.error(err);
+    alert("Failed to save movie");
+  }
+}

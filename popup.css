@@ -39,7 +39,7 @@ input {
   font-size: 13px;
 }
 
-button {
+#searchBtn {
   width: 100%;
   padding: 7px;
   border-radius: 6px;
@@ -49,6 +49,32 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+#watchLaterBtn {
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+  background-color: #FFD700;
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.watchLaterLink {
+  display: flex;
+  justify-content: flex-end;
+  color: #FFD700;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.watchLaterLink:hover {
+  color: #4DD0E1;
+}
+
+
 /*
 button:hover {
   background-color: #FFD700;
@@ -61,6 +87,9 @@ button:hover {
 }
 
 .movie-title {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 4px;
@@ -105,7 +134,6 @@ button:hover {
 
 .rating-label {
   font-size: 12px;
-  color: #94a3b8;
 }
 
 .imdb-link {
@@ -151,4 +179,6 @@ button:hover {
   color: black;
 }
 
-
+::-webkit-scrollbar {
+  display: none;
+}
